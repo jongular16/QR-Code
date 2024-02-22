@@ -4,12 +4,12 @@ import smtplib
 import ssl
 import os
 
-# Here add the name of the excel sheet 
-book = load_workbook('testSheet.xlsx')
+# To open the excel sheet 
+book = load_workbook('GraduatedStudent.xlsx')
 sheet = book.active
-### Now taking the emails
+
+# To take information from the excel sheet
 emails = []
-names= []
 outCount = 0
 for row in sheet.iter_rows():
     outCount += 1
@@ -19,28 +19,33 @@ for row in sheet.iter_rows():
             count += 1
             if count == 2:
                 emails.append(cell.value)
-            else: names.append(cell.value)
 
+# To take the password
+with open('The password.txt', 'r') as file:
+    email_password = file.read()    
 
-### Now sending to the emails       
+# To take the email sender
+with open('Sender.txt', 'r') as file:
+    email_sender = file.read()    
 
-email_password = 'hxab grhq dikb xhgd'
-email_sender = 'abdailahfalehF16@gmail.com'
-subject = 'tset'
-body = 'just a test'
+# To take the subject of the email
+with open('Subject.txt', 'r') as file:
+    subject = file.read()
 
-### New opening the folder that contains the images
+# To take the body of the email
+with open('body.txt', 'r') as file:
+    body = file.read()
 
-fPath = "C:\\Users\\ABDULLA\\Desktop\\barForUHB\\QR codes"
+# Here we just sending emails
+fPath = os.path.abspath('QR codes')
 files = os.listdir(fPath)
-
 con = ssl.create_default_context()
 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=con) as mt:
     mt.login(email_sender, email_password)    
     for i in range(len(emails)):
         recipient_email = emails[i]
         file = files[i]
-        fll = fPath+'\\'+file
+        fll = r'{}\{}'.format(fPath,file)
         em = EmailMessage()
         em['From'] = email_sender
         em['Subject'] = subject
