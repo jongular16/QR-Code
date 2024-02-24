@@ -16,4 +16,5 @@
 - Open the excel sheet and after the name and email row, add the name and email of the graduated students.
 - Number of images should be equal to the number of emails that provided in excel sheet.
 - Add the subject in the `Subject.txt`, body of the email in the `body.txt`, and the sender in the `Sender.txt`.
-- In the `Sender.txt` and `The password.txt` becarfull delete all the lines, but not the first one.
+- In the `Sender.txt` and `The password.txt` be careful delete all the lines, but not the first one.
+- Name the folder that contains the QR codes images `QR codes`.
